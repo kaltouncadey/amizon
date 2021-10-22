@@ -29,9 +29,8 @@ const Header = () => {
         </div>
         <div className={styles.option}>
           <span className={styles.optionOne}>
-            <Icons.ShoppingCart />
+            <Icons.ShoppingCart /> 0
           </span>
-          <span className={styles.optionTwo}>0</span>
         </div>
       </div>
     </div>

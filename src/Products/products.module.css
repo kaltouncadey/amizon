@@ -1,0 +1,33 @@
+.itemContainer {
+  background-color: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  width: 24%;
+  margin-top: 2rem;
+  height: 10%;
+}
+.productItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+.itemImg {
+  width: 100%;
+  margin: 0.8rem 0;
+  /* object-fit: c; */
+}
+
+a {
+  text-decoration: none;
+  color: rgb(26, 91, 230);
+  transition: all 0.3s ease;
+}
+a:hover {
+  color: rgb(255, 0, 43);
+  border-bottom: 1px solid rgb(255, 0, 43);
+}

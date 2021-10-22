@@ -1,0 +1,17 @@
+.homeContainer {
+  width: 95%;
+  margin: auto;
+  user-select: none;
+}
+.homeRow {
+}
+.imgContainer {
+  width: 100%;
+  z-index: -99;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.products {
+  position: relative;
+  top: -25rem;
+}

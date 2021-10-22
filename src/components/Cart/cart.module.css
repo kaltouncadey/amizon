@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .cartItems {
   background-color: white;
@@ -13,7 +13,8 @@
 }
 .cartItems > p {
   margin: 0.5rem 0;
-  color: #419eea;
+  color: #0b8cf6;
+  cursor: pointer;
 }
 .subTotal {
   background-color: white;

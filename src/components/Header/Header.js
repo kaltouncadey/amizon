@@ -2,15 +2,18 @@ import { SearchOutlined } from "@material-ui/icons";
 import React from "react";
 import styles from "./header.module.css";
 import * as Icons from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.headerLogo}>
-        <img
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-          className={styles.img}
-        />
+        <Link to="/">
+          <img
+            src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+            className={styles.img}
+          />
+        </Link>
       </div>
       <div className={styles.headerSearch}>
         <input type="text" />
@@ -28,9 +31,11 @@ const Header = () => {
           <span className={styles.optionTwo}>& orders</span>
         </div>
         <div className={styles.option}>
-          <span className={styles.optionOne}>
-            <Icons.ShoppingCart /> 0
-          </span>
+          <Link to="/my-cart" className={styles.link}>
+            <span className={styles.optionOne}>
+              <Icons.ShoppingCart style={{ color: "white" }} /> 0
+            </span>
+          </Link>
         </div>
       </div>
     </div>

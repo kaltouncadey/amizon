@@ -1,0 +1,23 @@
+.container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 3rem;
+}
+.cartItems {
+  background-color: white;
+  flex: 2;
+  padding: 1.5rem;
+}
+.cartItems > p {
+  margin: 0.5rem 0;
+  color: #419eea;
+}
+.subTotal {
+  background-color: white;
+  flex: 0.6;
+  padding: 1.5rem;
+  margin-left: 1rem;
+}

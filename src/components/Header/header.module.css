@@ -62,3 +62,8 @@
   font-size: 16px;
   font-weight: 900;
 }
+
+.link {
+  text-decoration: none;
+  color: #fff;
+}

@@ -5,17 +5,17 @@ import { cartActions } from "../components/store/CartStore/CartSlice";
 
 import styles from "./products.module.css";
 
-const ProductItem = ({ title, src, price }) => {
+const ProductItem = ({ title, src, price, id }) => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
   const addToCart = () => {
     const newPayload = {
+      id,
       title,
       src,
       price,
+      qty: 1,
     };
     dispatch(cartActions.addToCart(newPayload));
-    console.log(items);
   };
   return (
     <div className={styles.itemContainer}>
@@ -25,7 +25,7 @@ const ProductItem = ({ title, src, price }) => {
           <img className={styles.itemImg} src={src} alt="" />
         </div>
         <div className={styles.actions}>
-          $ {price}
+          $ {price.toFixed(2)}
           <button onClick={addToCart}>Add to cart</button>
         </div>
       </div>

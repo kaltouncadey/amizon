@@ -3,8 +3,10 @@ import React from "react";
 import styles from "./header.module.css";
 import * as Icons from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const qty = useSelector((state) => state.cart.totalQty);
   return (
     <div className={styles.header}>
       <div className={styles.headerLogo}>
@@ -33,7 +35,7 @@ const Header = () => {
         <div className={styles.option}>
           <Link to="/my-cart" className={styles.link}>
             <span className={styles.optionOne}>
-              <Icons.ShoppingCart style={{ color: "white" }} /> 0
+              <Icons.ShoppingCart style={{ color: "white" }} /> {qty}
             </span>
           </Link>
         </div>

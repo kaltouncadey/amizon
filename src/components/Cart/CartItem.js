@@ -30,9 +30,18 @@ const CartItem = ({ title, price, src, qty, id }) => {
           <h2>{title}</h2>
           <h4>$ {price.toFixed(2)}</h4>
           <div>
-            <button onClick={addToCart}>+</button>
-            <span style={{ margin: "0 1rem" }}> {qty} </span>
-            <button onClick={removeItem}>-</button>
+            <button className="btn btn-warning shadow-none" onClick={addToCart}>
+              +
+            </button>
+            <span className="badge bg-primary" style={{ margin: "0 1rem" }}>
+              {qty}
+            </span>
+            <button
+              className="btn btn-warning shadow-none"
+              onClick={removeItem}
+            >
+              -
+            </button>
           </div>
           <p style={{ textAlign: "right" }}>SubTotal $ {price * qty} </p>
         </div>

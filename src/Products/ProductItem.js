@@ -26,7 +26,9 @@ const ProductItem = ({ title, src, price, id }) => {
         </div>
         <div className={styles.actions}>
           $ {price.toFixed(2)}
-          <button onClick={addToCart}>Add to cart</button>
+          <button className={styles.addBtn} onClick={addToCart}>
+            Add to cart
+          </button>
         </div>
       </div>
     </div>

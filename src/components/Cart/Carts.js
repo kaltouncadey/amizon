@@ -33,7 +33,10 @@ const Carts = () => {
       <div className={styles.subTotal}>
         Subtotal ({qty} {qty > 1 ? "items" : "item"}):{" "}
         <strong>${total.toFixed(2)}</strong>
-        <button style={{ width: "100%", marginTop: "2rem" }}>
+        <button
+          className={styles.proceedBtn}
+          style={{ width: "100%", marginTop: "2rem" }}
+        >
           Proceed to checkout
         </button>
       </div>

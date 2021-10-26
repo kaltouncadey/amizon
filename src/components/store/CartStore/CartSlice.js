@@ -22,7 +22,6 @@ const cartSlice = createSlice({
     },
     removeCart(state, action) {
       state.totalQty--;
-
       const deletingItemId = action.payload;
       const deletingItem = state.items.find(
         (item) => item.id === deletingItemId

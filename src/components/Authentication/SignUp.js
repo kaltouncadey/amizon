@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../firebase";
 import { userActions } from "../store/Auth/AuthSlice";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false);
   const dispatch = useDispatch();
   const show = useSelector((state) => state.userAuth.user);
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +22,7 @@ const SignUp = () => {
       .then((auth) => {
         if (auth) {
           dispatch(userActions.addCurrentUser(auth));
+          history.push("/");
         }
         setIsLoading(false);
       })
@@ -27,8 +31,23 @@ const SignUp = () => {
         setIsLoading(false);
         setError(true);
       });
+  };
 
-    console.log(show);
+  const signIn = () => {
+    setIsLoadingLogin(true);
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) {
+          dispatch(userActions.addCurrentUser(auth));
+          history.push("/");
+        }
+        setIsLoadingLogin(false);
+      })
+      .catch((error) => {
+        setIsLoadingLogin(false);
+        setError(true);
+      });
   };
 
   const spinner = (
@@ -48,6 +67,7 @@ const SignUp = () => {
       }}
     >
       <img
+        className="mb-3"
         style={{ width: "10%" }}
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
       />
@@ -77,7 +97,10 @@ const SignUp = () => {
             className="form-control shadow-none mt-2"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setError("");
+              setPassword(e.target.value);
+            }}
           />
           <button
             className="mt-4 w-100 btn shadow-none"
@@ -95,7 +118,9 @@ const SignUp = () => {
             Notice.
           </p>
         </form>
-        <button className="btn btn-secondary shadow-none">Log in</button>
+        <button onClick={signIn} className="btn btn-secondary shadow-none">
+          {isLoadingLogin ? spinner : "Login"}
+        </button>
       </div>
     </div>
   );

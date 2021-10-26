@@ -1,11 +1,21 @@
 import React from "react";
 import styles from "./header.module.css";
 import * as Icons from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../store/Auth/AuthSlice";
+import { auth } from "../../firebase";
 
-const Header = () => {
+const Header = ({ user }) => {
   const qty = useSelector((state) => state.cart.totalQty);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const signout = () => {
+    dispatch(userActions.addCurrentUser(null));
+    auth.signOut();
+    history.push("/");
+  };
   return (
     <div className={styles.header}>
       <div className={styles.headerLogo}>
@@ -22,10 +32,19 @@ const Header = () => {
           <Icons.Search />
         </div>
       </div>
-      <div className={styles.headerOptions}>
+      <div className={styles.headerOptions} style={{ userSelect: "none" }}>
         <div className={styles.option}>
-          <span className={styles.optionOne}>Hello</span>
-          <span className={styles.optionTwo}>Sign in</span>
+          <span className={styles.optionOne}>
+            {" "}
+            {user ? user.user.email : "Hello Guest"}
+          </span>
+          <span
+            className={styles.optionTwo}
+            onClick={signout}
+            style={{ cursor: "pointer" }}
+          >
+            {user ? "Signout" : "Sign in"}
+          </span>
         </div>
         <div className={styles.option}>
           <span className={styles.optionOne}>Returns</span>
@@ -34,7 +53,10 @@ const Header = () => {
         <div className={styles.option}>
           <Link to="/my-cart" className={styles.link}>
             <span className={styles.optionOne}>
-              <Icons.ShoppingCart style={{ color: "white" }} /> {qty}
+              <Icons.ShoppingCart style={{ color: "white" }} />
+              <span style={{ color: "white", fontSize: 18, marginLeft: 10 }}>
+                {qty}{" "}
+              </span>
             </span>
           </Link>
         </div>
